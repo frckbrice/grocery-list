@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  <title>grocery list</title>
+  <link rel="stylesheet" href="./assets/styles/styles.css">
+</head>
+<body>
+  <header>
+     Grocery List
+  </header>
+
+  <main>
+    <div class="header-presentation">
+    <div class="div-for-form">
+      <form>
+      <label for="item-input">Item</label>
+      <input type="text" id="item-input">
+      <label for="quantity-input">Quantity</label>
+      <input type="number" id="quantity-input">
+      <button type="submit" id="submit-btn" class="submit">Add</button>
+    </form>
+    </div>
+    <div class="div-imag">
+      <img src="./assets/images/funny.jpeg" alt="" class="imag">
+    </div>
+</div>
+    <div id="lists">
+      <p class="list__label">Still need to grab <span class="quantity" id="shopping-num"></span></p>
+      <ul id="shopping-list">
+      </ul>
+      <p class="list__label">In cart <span class="quantity" id="bought-num"></span></p>
+      <ul id="bought-list">
+      </ul>
+    </div>
+
+  </main>
+  <div class="push"></div>
+<script src="./index.js"></script>
+</body>
+</html>
