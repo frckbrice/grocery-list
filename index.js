@@ -6,14 +6,16 @@ const boughtList = document.querySelector("#bought-list");
 const shoppingNum = document.querySelector("#shopping-num");
 const boughtNum = document.querySelector("#bought-num");
 
-//* add events
-submit.addEventListener("click", addToshoppingList);
-shoppingList.addEventListener("click", removeItemFromList);
-shoppingList.addEventListener("click", addItemToBoughtList);
-boughtList.addEventListener("click", removeItemFromList);
+//*  events
+submit.addEventListener("click", addItemToshoppingList);
+shoppingList.addEventListener("click", sendItemToBoughtList);
+shoppingList.addEventListener("click", removeItemFromShoppingList);
+// shoppingList.addEventListener("dblclick", editContent);
+boughtList.addEventListener("click", sendBackItemToShoppingList);
+boughtList.addEventListener("click", removeItemFromBoughtList);
 
 //* function : add task */
-function addToshoppingList(e) {
+function addItemToshoppingList(e) {
   e.preventDefault();
   // get input text from user
   const inputText = document
@@ -26,7 +28,18 @@ function addToshoppingList(e) {
   if (inputText && inputQuantity) {
     //create li item (task)
     const li = document.createElement("li");
-li.textContent = inputText;
+    li.textContent = inputText;
+
+    //create i tag for icon
+    const iIcon = document.createElement("i");
+    iIcon.className = "fa fa-pencil";
+
+    const editButton = document.createElement("button");
+    editButton.style.cursor = "pointer";
+    editButton.className = "edit-button";
+    editButton.style.cursor = 'pointer'; 
+    editButton.appendChild(iIcon);
+    editButton.addEventListener('dblclick',editContent);
 
     //create delete button1
     const deleteButton = document.createElement("button");
@@ -39,33 +52,77 @@ li.textContent = inputText;
     span.classList.add("quantity");
 
     li.appendChild(span);
+    li.appendChild(editButton);
     li.appendChild(deleteButton);
 
     //add li to the end of list of tasks
     shoppingList.appendChild(li);
-    li.addEventListener('click', () => {
-    boughtList.appendChild(li); 
-    boughtNum.textContent = boughtList.childElementCount;
-    if(shoppingNum.textContent > 0){
-      shoppingNum.textContent -=1;
-    }else {
-      shoppingNum.textContent = 0;
-    }
-    
-    })
-    
+
     shoppingNum.textContent = shoppingList.children.length;
 
-    document.querySelector("#item-input") = "";
-    document.querySelector("#quantity-input")= "";
+    document.querySelector("#item-input").value = "";
+    document.querySelector("#quantity-input").value = "";
   } else {
     alert("No empty input allowed");
   }
 }
 
-//function to add item to bought list
-function addItemToBoughtList(e) {
+//function to send item to bought list
+function sendItemToBoughtList(e) {
   e.preventDefault();
-  boughtList.appendChild(e.target);
+  Array.from(shoppingList.children).forEach((li) => {
+    li.addEventListener("click", (e) => {
+      boughtList.appendChild(li);
+      shoppingNum.textContent = shoppingList.children.length;
+      boughtNum.textContent = boughtList.childElementCount;
+    });
+  });
 }
 
+//function to sendback item to shopping list
+function sendBackItemToShoppingList(e) {
+  e.preventDefault();
+  Array.from(boughtList.children).forEach((li) => {
+    li.addEventListener("click", (e) => {
+      shoppingList.appendChild(li);
+      boughtNum.textContent = boughtList.childElementCount;
+      shoppingNum.textContent = shoppingList.children.length;
+    });
+  });
+}
+
+//* function :  remove item from shopping list */
+function removeItemFromShoppingList(e) {
+  const deleteBtn = e.target;
+  if (deleteBtn.classList.contains("delete")) {
+    if (confirm("Are you sure you want to delete this task?")) {
+      const li = deleteBtn.parentElement;
+      shoppingList.removeChild(li);
+      boughtList.removeChild(li);
+      shoppingNum.textContent = shoppingList.children.length;
+    }
+  }
+}
+
+//* function :  remove item from bought list
+function removeItemFromBoughtList(e) {
+  const deleteBtn = e.target;
+  if (deleteBtn.classList.contains("delete")) {
+    if (confirm("Are you sure you want to delete this task?")) {
+      const li = deleteBtn.parentElement;
+      boughtList.removeChild(li);
+      boughtNum.textContent = boughtList.childElementCount;
+    }
+  }
+}
+
+//* function to edit content
+function editContent() {
+  const listOfItem = document.querySelectorAll("li");
+  console.log(listOfItem);
+  listOfItem.forEach((li) => {
+    li.addEventListener("click", () => {
+      li.firstChild.contentEditable = true;
+    });
+  });
+}
