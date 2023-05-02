@@ -200,8 +200,14 @@ li:hover {
   padding: 0;
 }
 
+@media screen and (max-width: 480px) {
+  main {
+    padding: 0 1rem;
+  }
+}
+
 @media screen and (max-width: 320px) {
-  .header-presentation {
-    flex-direction: column;
+  main {
+    padding: 0 0.75rem;
   }
 }
