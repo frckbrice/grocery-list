@@ -10,7 +10,7 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   overflow: auto;
   margin: 0;
@@ -29,6 +29,7 @@ footer {
 
 main {
   padding: 0 3rem;
+  min-height: 100vh;
 }
 
 footer,
@@ -66,9 +67,6 @@ input {
 .submit {
   color: white;
   background-color: #f80909;
-}
-
-button {
   border: 0;
   padding: 1em;
   width: 5rem;
@@ -143,7 +141,7 @@ li:hover {
 }
 
 .quantity {
-  color: #08f008;
+  color: #091d8f;
 }
 
 .quantity:before {
@@ -155,20 +153,17 @@ li:hover {
 }
 
 .edit-button {
-  position: absolute;
   width: 60px;
-  float: right;
+ border: 0;
   padding: 10px;
-  right: 35px;
-  top: -15px;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .fa-pencil {
-  color: blue;
+  color: #091d8f;
   font-size: 30px;
-
-  width: 10px;
+  width: 8px;
 }
 
 .delete {
@@ -176,10 +171,10 @@ li:hover {
   padding: 10px;
   position: absolute;
   right: 0;
-  top: 0;
+  top: -3px;
   color: white;
   background-color: #f80909;
-  margin: 5px 8px;
+  margin: 5px 8px 10px;
   width: auto;
   /* font-size: 1rem; */
 }
@@ -190,12 +185,12 @@ li:hover {
 
 #bought-list li {
   background-color: #f6f6f6;
-  caret-color: blue;
+  caret-color: #091d8f;
   caret-shape: underscore;
 }
 
 #bought-list li .quantity {
-  color: #17eb10;
+  color: #091d8f;
 }
 
 .list__label {

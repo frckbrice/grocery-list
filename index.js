@@ -5,6 +5,7 @@ const shoppingList = document.querySelector("#shopping-list");
 const boughtList = document.querySelector("#bought-list");
 const shoppingNum = document.querySelector("#shopping-num");
 const boughtNum = document.querySelector("#bought-num");
+const editButton = document.querySelector(".edit-button");
 
 //*  events
 submit.addEventListener("click", addItemToshoppingList);
@@ -13,6 +14,7 @@ shoppingList.addEventListener("click", removeItemFromShoppingList);
 // shoppingList.addEventListener("dblclick", editContent);
 boughtList.addEventListener("click", sendBackItemToShoppingList);
 boughtList.addEventListener("click", removeItemFromBoughtList);
+editButton.addEventListener("click", editContent);
 
 //* function : add task */
 function addItemToshoppingList(e) {
@@ -28,18 +30,10 @@ function addItemToshoppingList(e) {
   if (inputText && inputQuantity) {
     //create li item (task)
     const li = document.createElement("li");
-    li.textContent = inputText;
 
-    //create i tag for icon
-    const iIcon = document.createElement("i");
-    iIcon.className = "fa fa-pencil";
-
-    const editButton = document.createElement("button");
-    editButton.style.cursor = "pointer";
-    editButton.className = "edit-button";
-    editButton.style.cursor = 'pointer'; 
-    editButton.appendChild(iIcon);
-    editButton.addEventListener('dblclick',editContent);
+    const span1 = document.createElement("span");
+    span1.textContent = inputText;
+    span1.style.padding = '10px';
 
     //create delete button1
     const deleteButton = document.createElement("button");
@@ -51,8 +45,8 @@ function addItemToshoppingList(e) {
     span.textContent = inputQuantity;
     span.classList.add("quantity");
 
+    li.appendChild(span1);
     li.appendChild(span);
-    li.appendChild(editButton);
     li.appendChild(deleteButton);
 
     //add li to the end of list of tasks
@@ -71,10 +65,11 @@ function addItemToshoppingList(e) {
 function sendItemToBoughtList(e) {
   e.preventDefault();
   Array.from(shoppingList.children).forEach((li) => {
-    li.addEventListener("click", (e) => {
+    li.addEventListener("dblclick", (e) => {
       boughtList.appendChild(li);
       shoppingNum.textContent = shoppingList.children.length;
       boughtNum.textContent = boughtList.childElementCount;
+      li.firstElementChild.contentEditable = false;
     });
   });
 }
@@ -83,7 +78,7 @@ function sendItemToBoughtList(e) {
 function sendBackItemToShoppingList(e) {
   e.preventDefault();
   Array.from(boughtList.children).forEach((li) => {
-    li.addEventListener("click", (e) => {
+    li.addEventListener("dblclick", (e) => {
       shoppingList.appendChild(li);
       boughtNum.textContent = boughtList.childElementCount;
       shoppingNum.textContent = shoppingList.children.length;
@@ -98,7 +93,6 @@ function removeItemFromShoppingList(e) {
     if (confirm("Are you sure you want to delete this task?")) {
       const li = deleteBtn.parentElement;
       shoppingList.removeChild(li);
-      boughtList.removeChild(li);
       shoppingNum.textContent = shoppingList.children.length;
     }
   }
@@ -121,8 +115,8 @@ function editContent() {
   const listOfItem = document.querySelectorAll("li");
   console.log(listOfItem);
   listOfItem.forEach((li) => {
-    li.addEventListener("click", () => {
-      li.firstChild.contentEditable = true;
+      li.addEventListener("click", () => {
+      li.firstElementChild.contentEditable = true;
     });
   });
 }
