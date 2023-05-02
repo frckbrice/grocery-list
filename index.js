@@ -11,7 +11,6 @@ const editButton = document.querySelector(".edit-button");
 submit.addEventListener("click", addItemToshoppingList);
 shoppingList.addEventListener("click", sendItemToBoughtList);
 shoppingList.addEventListener("click", removeItemFromShoppingList);
-// shoppingList.addEventListener("dblclick", editContent);
 boughtList.addEventListener("click", sendBackItemToShoppingList);
 boughtList.addEventListener("click", removeItemFromBoughtList);
 editButton.addEventListener("click", editContent);
@@ -27,7 +26,7 @@ function addItemToshoppingList(e) {
   const inputQuantity = parseInt(
     document.querySelector("#quantity-input").value.trim()
   );
-  if (inputText && inputQuantity) {
+  if (inputText && (inputQuantity < 1)) {
     //create li item (task)
     const li = document.createElement("li");
 
