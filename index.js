@@ -26,7 +26,7 @@ function addItemToshoppingList(e) {
   const inputQuantity = parseInt(
     document.querySelector("#quantity-input").value.trim()
   );
-  if (inputText && (inputQuantity < 1)) {
+  if (!inputText && !inputQuantity) {
     //create li item (task)
     const li = document.createElement("li");
 
