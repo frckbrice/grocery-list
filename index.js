@@ -1,4 +1,4 @@
-//* import  html object
+//* import  html objects
 
 const submit = document.querySelector("#submit-btn");
 const shoppingList = document.querySelector("#shopping-list");
@@ -7,12 +7,12 @@ const shoppingNum = document.querySelector("#shopping-num");
 const boughtNum = document.querySelector("#bought-num");
 const editButton = document.querySelector(".edit-button");
 
-shoppingNum.style.color = 'white';
+shoppingNum.style.color = "white";
 boughtNum.style.color = "white";
 
 //*  events
 submit.addEventListener("click", addItemToshoppingList);
-shoppingList.addEventListener("click", sendItemToBoughtList);
+shoppingList.addEventListener("keypress", sendItemToBoughtList);
 shoppingList.addEventListener("click", removeItemFromShoppingList);
 boughtList.addEventListener("click", sendBackItemToShoppingList);
 boughtList.addEventListener("click", removeItemFromBoughtList);
@@ -29,13 +29,13 @@ function addItemToshoppingList(e) {
   const inputQuantity = parseInt(
     document.querySelector("#quantity-input").value.trim()
   );
-  if (inputText != '' && inputQuantity > 0) {
+  if (inputText != "" && inputQuantity > 0) {
     //create li item (task)
     const li = document.createElement("li");
 
     const span1 = document.createElement("span");
     span1.textContent = inputText;
-    span1.style.padding = '10px';
+    span1.style.padding = "10px";
 
     //create delete button1
     const deleteButton = document.createElement("button");
@@ -117,8 +117,10 @@ function editContent() {
   const listOfItem = document.querySelectorAll("li");
   console.log(listOfItem);
   listOfItem.forEach((li) => {
-      li.addEventListener("click", () => {
+    li.addEventListener("click", () => {
       li.firstElementChild.contentEditable = true;
     });
   });
 }
+
+

@@ -7,7 +7,8 @@ body {
   display: flex;
   flex-direction: column;
   padding: 2rem 1rem 0;
-  background: linear-gradient(rgba(0 0 0 / 40%), rgba(0 0 0 / 20%)), url('../images/shopImg.avif');
+  background: linear-gradient(rgba(0 0 0 / 40%), rgba(0 0 0 / 20%)),
+    url("../images/cartimg.jpeg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -43,12 +44,11 @@ main {
   background-color: #04b321;
 } */
 
-.div-quantity
-.div-for-form {
+.div-quantity .div-for-form {
   flex-basis: 50%;
 }
 
-.div-quantity { 
+.div-quantity {
   display: inline-block;
 }
 
@@ -89,13 +89,8 @@ input {
   margin: 1.5rem 0;
 }
 
-.div-imag {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 45%;
-  padding: 0;
-  position: relative;
+.quantity-input {
+  width: 40px;
 }
 
 .imag {
@@ -105,6 +100,13 @@ input {
 
 .lists {
   min-height: 100vh;
+  position: relative;
+}
+
+.span-edit {
+  color: #fff;
+  font-style: italic;
+  font-size: small;
 }
 
 .icon {
@@ -125,18 +127,12 @@ input {
   margin-right: 0.3em;
 }
 
-.span-edit {
-  color: #eafaed;
-  font-style: italic;
-  font-size: small;
-}
-
 .span-edit::before {
-  content: '(';
+  content: "(";
 }
 
 .span-edit::after {
-  content: ')';
+  content: ")";
 }
 
 #shopping-list li:before {
@@ -169,12 +165,12 @@ li:hover {
 }
 
 .quantity {
- color: #091d8f;
+  color: #091d8f;
 }
 
 .quantity:before {
   /* content: " ("; */
-   content: " = "; 
+  content: " = ";
 }
 
 /* .quantity:after {
@@ -183,7 +179,7 @@ li:hover {
 
 .edit-button {
   width: 60px;
- border: 0;
+  border: 0;
   padding: 10px;
   background-color: transparent;
   cursor: pointer;
@@ -228,11 +224,38 @@ li:hover {
   font-size: 1em;
   /* color: white; */
   padding: 0;
+  
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
+  #item-input {
+    width: 100%;
+  }
+
+  .span-edit {
+    position: absolute;
+    top: 45vh;
+    left: 60px;
+  }
+
+  .div-for-form {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 425px) {
   main {
     padding: 0 1rem;
+  }
+
+  .div-quantity {
+    width: 50%;
+  }
+
+   .span-edit {
+    position: absolute;
+    top: 42vh;
+    left: 30px;
   }
 }
 
