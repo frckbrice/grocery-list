@@ -7,6 +7,9 @@ const shoppingNum = document.querySelector("#shopping-num");
 const boughtNum = document.querySelector("#bought-num");
 const editButton = document.querySelector(".edit-button");
 
+shoppingNum.style.color = 'white';
+boughtNum.style.color = "white";
+
 //*  events
 submit.addEventListener("click", addItemToshoppingList);
 shoppingList.addEventListener("click", sendItemToBoughtList);

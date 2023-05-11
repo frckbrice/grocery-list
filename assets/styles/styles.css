@@ -1,20 +1,25 @@
 * {
   box-sizing: border-box;
+  /* border: solid 1px brown; */
 }
 
 body {
   display: flex;
   flex-direction: column;
-  padding: 2rem 1rem;
-  background: linear-gradient(rgba(0 0 0 / 40%), rgba(0 0 0 / 20%));
+  padding: 2rem 1rem 0;
+  background: linear-gradient(rgba(0 0 0 / 40%), rgba(0 0 0 / 20%)), url('../images/shopImg.avif');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   overflow: auto;
   margin: 0;
   /* padding: 0 3rem; */
+}
+
+header {
+  font-size: 30px;
 }
 
 header,
@@ -23,27 +28,32 @@ footer {
   background-color: #004a55;
   width: 100%;
   text-align: center;
-  padding: 0.5em;
-  position: relative;
+  padding: 0.5em 0;
 }
 
 main {
   padding: 0 3rem;
   min-height: 100vh;
+  color: white;
 }
 
-footer,
-.push {
-  height: 2em;
-}
-
-.wrapper {
+/* .wrapper {
   margin: 0 auto -2em;
   min-height: 100%;
+  background-color: #04b321;
+} */
+
+.div-quantity
+.div-for-form {
+  flex-basis: 50%;
 }
 
-.div-for-form {
-  flex: 1;
+.div-quantity { 
+  display: inline-block;
+}
+
+#item-input {
+  width: 20vw;
 }
 
 form {
@@ -66,7 +76,7 @@ input {
 
 .submit {
   color: white;
-  background-color: #f80909;
+  background-color: #04b321;
   border: 0;
   padding: 1em;
   width: 5rem;
@@ -93,6 +103,10 @@ input {
   height: 170px;
 }
 
+.lists {
+  min-height: 100vh;
+}
+
 .icon {
   display: inline-block;
   width: 0.9em;
@@ -109,6 +123,20 @@ input {
   height: 0.9em;
   width: 1em;
   margin-right: 0.3em;
+}
+
+.span-edit {
+  color: #eafaed;
+  font-style: italic;
+  font-size: small;
+}
+
+.span-edit::before {
+  content: '(';
+}
+
+.span-edit::after {
+  content: ')';
 }
 
 #shopping-list li:before {
@@ -141,16 +169,17 @@ li:hover {
 }
 
 .quantity {
-  color: #091d8f;
+ color: #091d8f;
 }
 
 .quantity:before {
-  content: " (";
+  /* content: " ("; */
+   content: " = "; 
 }
 
-.quantity:after {
+/* .quantity:after {
   content: ")";
-}
+} */
 
 .edit-button {
   width: 60px;
@@ -160,6 +189,7 @@ li:hover {
   cursor: pointer;
 }
 
+.fa-cart-arrow-down,
 .fa-pencil {
   color: #091d8f;
   font-size: 30px;
@@ -196,7 +226,7 @@ li:hover {
 .list__label {
   border-bottom: 2px solid #09c0f8;
   font-size: 1em;
-  color: #0e1e20;
+  /* color: white; */
   padding: 0;
 }
 
