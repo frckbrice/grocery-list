@@ -21,6 +21,7 @@ body {
 
 header {
   font-size: 30px;
+  margin-top: 0 ;
 }
 
 header,
@@ -72,6 +73,16 @@ input {
   background-color: #f6f6f6;
   outline: none;
   width: 100%;
+}
+
+.move {
+  background-color: #04b321;
+  color: #fff;
+ right: 35px;
+  padding: 10px 5px;
+  position: absolute;
+  top: 2px;
+  margin: 0 10px;
 }
 
 .submit {

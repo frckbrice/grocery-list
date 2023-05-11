@@ -32,10 +32,18 @@ function addItemToshoppingList(e) {
   if (inputText != "" && inputQuantity > 0) {
     //create li item (task)
     const li = document.createElement("li");
+    li.style.position = 'relative';
 
     const span1 = document.createElement("span");
     span1.textContent = inputText;
     span1.style.padding = "10px";
+
+    //create delete button2
+    // const moveButton = document.createElement("button");
+    // moveButton.style.cursor = "pointer";
+    // moveButton.appendChild(document.createTextNode("move"));
+    // moveButton.className = "move";
+    // moveButton.addEventListener("click", moveItemToCart(e));
 
     //create delete button1
     const deleteButton = document.createElement("button");
@@ -49,6 +57,7 @@ function addItemToshoppingList(e) {
 
     li.appendChild(span1);
     li.appendChild(span);
+    // li.appendChild(moveButton);
     li.appendChild(deleteButton);
 
     //add li to the end of list of tasks
@@ -64,8 +73,8 @@ function addItemToshoppingList(e) {
 }
 
 //function to send item to bought list
-function sendItemToBoughtList(e) {
-  e.preventDefault();
+function sendItemToBoughtList() {
+  // e.preventDefault();
   Array.from(shoppingList.children).forEach((li) => {
     li.addEventListener("dblclick", () => {
       boughtList.appendChild(li);
@@ -122,5 +131,28 @@ function editContent() {
     });
   });
 }
+
+function moveItemToCart(e) {
+  e.preventDefault();
+  const move = document.querySelector('.move');
+  li = move.parentElement;
+  console.log(li,move)
+  boughtList.appendChild(li);
+  shoppingNum.textContent = shoppingList.children.length;
+  boughtNum.textContent = boughtList.childElementCount;
+  li.firstElementChild.contentEditable = false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
