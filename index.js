@@ -12,7 +12,7 @@ boughtNum.style.color = "white";
 
 //*  events
 submit.addEventListener("click", addItemToshoppingList);
-shoppingList.addEventListener("keypress", sendItemToBoughtList);
+shoppingList.addEventListener("click", sendItemToBoughtList);
 shoppingList.addEventListener("click", removeItemFromShoppingList);
 boughtList.addEventListener("click", sendBackItemToShoppingList);
 boughtList.addEventListener("click", removeItemFromBoughtList);
@@ -67,7 +67,7 @@ function addItemToshoppingList(e) {
 function sendItemToBoughtList(e) {
   e.preventDefault();
   Array.from(shoppingList.children).forEach((li) => {
-    li.addEventListener("dblclick", (e) => {
+    li.addEventListener("dblclick", () => {
       boughtList.appendChild(li);
       shoppingNum.textContent = shoppingList.children.length;
       boughtNum.textContent = boughtList.childElementCount;
@@ -80,7 +80,7 @@ function sendItemToBoughtList(e) {
 function sendBackItemToShoppingList(e) {
   e.preventDefault();
   Array.from(boughtList.children).forEach((li) => {
-    li.addEventListener("dblclick", (e) => {
+    li.addEventListener("dblclick", () => {
       shoppingList.appendChild(li);
       boughtNum.textContent = boughtList.childElementCount;
       shoppingNum.textContent = shoppingList.children.length;
