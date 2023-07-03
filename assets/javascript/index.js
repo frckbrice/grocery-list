@@ -32,7 +32,7 @@ function addItemToshoppingList(e) {
   if (inputText != "" && inputQuantity > 0) {
     //create li item (task)
     const li = document.createElement("li");
-    li.style.position = 'relative';
+    li.style.position = "relative";
 
     const span1 = document.createElement("span");
     span1.textContent = inputText;
@@ -72,27 +72,51 @@ function addItemToshoppingList(e) {
   }
 }
 
-//function to send item to bought list
+//* function to send item to bought list
 function sendItemToBoughtList() {
   // e.preventDefault();
   Array.from(shoppingList.children).forEach((li) => {
-    li.addEventListener("dblclick", () => {
-      boughtList.appendChild(li);
-      shoppingNum.textContent = shoppingList.children.length;
-      boughtNum.textContent = boughtList.childElementCount;
-      li.firstElementChild.contentEditable = false;
+    li.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (document.documentElement.scrollWidth <= 800) {
+        // this.addEventListener("dblclick", () => {
+        boughtList.appendChild(li);
+        shoppingNum.textContent = shoppingList.children.length;
+        boughtNum.textContent = boughtList.childElementCount;
+        li.firstElementChild.contentEditable = false;
+        // });
+      } else {
+        boughtList.appendChild(li);
+        shoppingNum.textContent = shoppingList.children.length;
+        boughtNum.textContent = boughtList.childElementCount;
+        li.firstElementChild.contentEditable = false;
+      }
     });
   });
 }
 
-//function to sendback item to shopping list
+//*function to sendback item to shopping list
 function sendBackItemToShoppingList(e) {
   e.preventDefault();
   Array.from(boughtList.children).forEach((li) => {
-    li.addEventListener("dblclick", () => {
-      shoppingList.appendChild(li);
-      boughtNum.textContent = boughtList.childElementCount;
-      shoppingNum.textContent = shoppingList.children.length;
+    // li.addEventListener("dblclick", () => {
+    //   shoppingList.appendChild(li);
+    //   boughtNum.textContent = boughtList.childElementCount;
+    //   shoppingNum.textContent = shoppingList.children.length;
+    // });
+    li.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (document.documentElement.scrollWidth <= 800) {
+        // this.addEventListener("dblclick", () => {
+          shoppingList.appendChild(li);
+          shoppingNum.textContent = shoppingList.children.length;
+          boughtNum.textContent = boughtList.childElementCount;
+        // });
+      } else {
+        shoppingList.appendChild(li);
+        shoppingNum.textContent = shoppingList.children.length;
+        boughtNum.textContent = boughtList.childElementCount;
+      }
     });
   });
 }
@@ -124,35 +148,21 @@ function removeItemFromBoughtList(e) {
 //* function to edit content
 function editContent() {
   const listOfItem = document.querySelectorAll("li");
-  console.log(listOfItem);
-  listOfItem.forEach((li) => {
+  console.log(typeof listOfItem);
+  Array.from(listOfItem).forEach((li) => {
     li.addEventListener("click", () => {
       li.firstElementChild.contentEditable = true;
     });
   });
 }
 
-function moveItemToCart(e) {
-  e.preventDefault();
-  const move = document.querySelector('.move');
-  li = move.parentElement;
-  console.log(li,move)
-  boughtList.appendChild(li);
-  shoppingNum.textContent = shoppingList.children.length;
-  boughtNum.textContent = boughtList.childElementCount;
-  li.firstElementChild.contentEditable = false;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// function moveItemToCart(e) {
+//   e.preventDefault();
+//   const move = document.querySelector('.move');
+//   li = move.parentElement;
+//   console.log(li,move)
+//   boughtList.appendChild(li);
+//   shoppingNum.textContent = shoppingList.children.length;
+//   boughtNum.textContent = boughtList.childElementCount;
+//   li.firstElementChild.contentEditable = false;
+// }

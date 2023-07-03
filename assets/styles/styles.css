@@ -27,10 +27,17 @@ header {
 header,
 footer {
   color: white;
-  background-color: #004a55;
+  background-color: #004a5585;
   width: 100%;
   text-align: center;
   padding: 0.5em 0;
+}
+
+footer {
+  float: right;
+  font-size: 10px;
+  font-style: italic;
+  color: chartreuse;
 }
 
 main {
@@ -45,16 +52,26 @@ main {
   background-color: #04b321;
 } */
 
-.div-quantity .div-for-form {
+.div-quantity {
   flex-basis: 50%;
 }
 
-.div-quantity {
-  display: inline-block;
+.div-for-form {
+  flex: 1;
+  width: 100%;
 }
 
 #item-input {
-  width: 20vw;
+  width: 42vw;
+}
+
+.label-input {
+  font-size: 1.25rem;
+  min-height: 1rem;
+}
+
+#quantity-input {
+  width: 100%;
 }
 
 form {
@@ -75,7 +92,7 @@ input {
   width: 100%;
 }
 
-.move {
+/* .move {
   background-color: #04b321;
   color: #fff;
  right: 35px;
@@ -83,7 +100,7 @@ input {
   position: absolute;
   top: 2px;
   margin: 0 10px;
-}
+} */
 
 .submit {
   color: white;
@@ -98,10 +115,6 @@ input {
   display: flex;
   column-gap: 3vw;
   margin: 1.5rem 0;
-}
-
-.quantity-input {
-  width: 40px;
 }
 
 .imag {
@@ -247,6 +260,9 @@ li:hover {
     position: absolute;
     top: 45vh;
     left: 60px;
+    color: rgb(251, 252, 249);
+    font-size: 10px;
+    font-weight: bold;
   }
 
   .div-for-form {

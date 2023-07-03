@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"
+    />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -17,34 +21,37 @@
     <main>
       <div class="header-presentation">
         <div class="div-for-form">
-          <form>
-            <label for="item-input">Item name</label>
-            <input type="text" id="item-input" />
-          </form>
+          <label for="item-input" class="label-input">Item name</label>
+          <input type="text" id="item-input" name="item-input" />
         </div>
         <div class="div-quantity">
-          <label for="quantity-input">Quantity</label>
-            <input type="number" id="quantity-input" />
-            <button type="submit" id="submit-btn" class="submit">Add</button>
+          <label for="quantity-input" class="label-input">Quantity</label>
+          <input type="number" id="quantity-input" />
+          <button type="submit" id="submit-btn" class="submit">Add</button>
           <!-- <img src="./assets/images/funny.jpeg" alt="" class="imag" /> -->
         </div>
       </div>
       <div id="lists">
         <p class="list__label">
           Still need to grab <span class="quantity" id="shopping-num"></span
-          ><button class="edit-button"><i class="fa fa-pencil"></i></button><span class="span-edit"> click pencil before, then click Item name to edit. Next, if needed, double click the Item to move it to cart</span> 
+          ><button class="edit-button"><i class="fa fa-pencil"></i></button
+          ><span class="span-edit">
+            click pencil before, then click Item name to edit. Next, if needed,
+            double click the Item to move it to cart</span
+          >
         </p>
         <ul id="shopping-list"></ul>
         <p class="list__label">
-          In cart <i class="fa fa-cart-arrow-down"></i> <span class="quantity" id="bought-num"></span>
+          In cart <i class="fa fa-cart-arrow-down"></i>
+          <span class="quantity" id="bought-num"></span>
         </p>
         <ul id="bought-list"></ul>
       </div>
     </main>
     <div class="push"></div>
-   
+
     <footer>Made with love by Avom Brice from Ra.</footer>
     <!-- ending -->
- <script src="./assets/javascript/index.js"></script>
+    <script src="./assets/javascript/index.js"></script>
   </body>
 </html>
