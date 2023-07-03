@@ -74,22 +74,27 @@ function addItemToshoppingList(e) {
 
 //* function to send item to bought list
 function sendItemToBoughtList() {
-  // e.preventDefault();
+  var touchtime = 0;
   Array.from(shoppingList.children).forEach((li) => {
     li.addEventListener("click", (e) => {
       e.preventDefault();
-      if (document.documentElement.scrollWidth <= 800) {
-        // this.addEventListener("dblclick", () => {
-        boughtList.appendChild(li);
-        shoppingNum.textContent = shoppingList.children.length;
-        boughtNum.textContent = boughtList.childElementCount;
-        li.firstElementChild.contentEditable = false;
-        // });
+      //DoubleCLick function
+      if (touchtime == 0) {
+        touchtime = new Date().getTime();
       } else {
-        boughtList.appendChild(li);
-        shoppingNum.textContent = shoppingList.children.length;
-        boughtNum.textContent = boughtList.childElementCount;
-        li.firstElementChild.contentEditable = false;
+        if (
+          // less than 800sec and 1440px
+          new Date().getTime() - touchtime < 800 &&
+          document.documentElement.scrollWidth < 1440
+        ) {
+          boughtList.appendChild(li);
+          shoppingNum.textContent = shoppingList.children.length;
+          boughtNum.textContent = boughtList.childElementCount;
+          li.firstElementChild.contentEditable = false;
+          touchtime = 0;
+        } else {
+          touchtime = new Date().getTime();
+        }
       }
     });
   });
@@ -99,24 +104,10 @@ function sendItemToBoughtList() {
 function sendBackItemToShoppingList(e) {
   e.preventDefault();
   Array.from(boughtList.children).forEach((li) => {
-    // li.addEventListener("dblclick", () => {
-    //   shoppingList.appendChild(li);
-    //   boughtNum.textContent = boughtList.childElementCount;
-    //   shoppingNum.textContent = shoppingList.children.length;
-    // });
-    li.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (document.documentElement.scrollWidth <= 800) {
-        // this.addEventListener("dblclick", () => {
-          shoppingList.appendChild(li);
-          shoppingNum.textContent = shoppingList.children.length;
-          boughtNum.textContent = boughtList.childElementCount;
-        // });
-      } else {
-        shoppingList.appendChild(li);
-        shoppingNum.textContent = shoppingList.children.length;
-        boughtNum.textContent = boughtList.childElementCount;
-      }
+    li.addEventListener("click", () => {
+      shoppingList.appendChild(li);
+      boughtNum.textContent = boughtList.childElementCount;
+      shoppingNum.textContent = shoppingList.children.length;
     });
   });
 }
