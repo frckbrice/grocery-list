@@ -1,48 +1,77 @@
 * {
   box-sizing: border-box;
+  /* border: solid 1px brown; */
 }
 
 body {
   display: flex;
   flex-direction: column;
-  padding: 2rem 1rem;
-  background: linear-gradient(rgba(0 0 0 / 40%), rgba(0 0 0 / 20%));
+  padding: 2rem 1rem 0;
+  background: linear-gradient(rgba(0 0 0 / 40%), rgba(0 0 0 / 20%)),
+    url("../images/cartimg.jpeg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   overflow: auto;
   margin: 0;
   /* padding: 0 3rem; */
 }
 
+header {
+  font-size: 30px;
+  margin-top: 0 ;
+}
+
 header,
 footer {
   color: white;
-  background-color: #004a55;
+  background-color: #004a5585;
   width: 100%;
   text-align: center;
-  padding: 0.5em;
-  position: relative;
+  padding: 0.5em 0;
+}
+
+footer {
+  float: right;
+  font-size: 10px;
+  font-style: italic;
+  color: chartreuse;
 }
 
 main {
   padding: 0 3rem;
+  min-height: 100vh;
+  color: white;
 }
 
-footer,
-.push {
-  height: 2em;
-}
-
-.wrapper {
+/* .wrapper {
   margin: 0 auto -2em;
   min-height: 100%;
+  background-color: #04b321;
+} */
+
+.div-quantity {
+  flex-basis: 50%;
 }
 
 .div-for-form {
   flex: 1;
+  width: 100%;
+}
+
+#item-input {
+  width: 42vw;
+}
+
+.label-input {
+  font-size: 1.25rem;
+  min-height: 1rem;
+}
+
+#quantity-input {
+  width: 100%;
 }
 
 form {
@@ -63,12 +92,19 @@ input {
   width: 100%;
 }
 
+/* .move {
+  background-color: #04b321;
+  color: #fff;
+ right: 35px;
+  padding: 10px 5px;
+  position: absolute;
+  top: 2px;
+  margin: 0 10px;
+} */
+
 .submit {
   color: white;
-  background-color: #f80909;
-}
-
-button {
+  background-color: #04b321;
   border: 0;
   padding: 1em;
   width: 5rem;
@@ -81,18 +117,20 @@ button {
   margin: 1.5rem 0;
 }
 
-.div-imag {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 45%;
-  padding: 0;
-  position: relative;
-}
-
 .imag {
   width: 40vw;
   height: 170px;
+}
+
+.lists {
+  min-height: 100vh;
+  position: relative;
+}
+
+.span-edit {
+  color: #fff;
+  font-style: italic;
+  font-size: small;
 }
 
 .icon {
@@ -113,6 +151,14 @@ button {
   margin-right: 0.3em;
 }
 
+.span-edit::before {
+  content: "(";
+}
+
+.span-edit::after {
+  content: ")";
+}
+
 #shopping-list li:before {
   background-image: url("https://res.cloudinary.com/ddy54k4ks/image/upload/v1454106412/svg/checkmark2.svg");
 }
@@ -130,7 +176,7 @@ ul {
 li {
   color: #0b2327;
   padding: 0.75em;
-  cursor: pointer;
+  /* cursor: pointer; */
   margin: 0.5em 0;
   border: 1px solid #004a55;
   position: relative;
@@ -143,15 +189,31 @@ li:hover {
 }
 
 .quantity {
-  color: #08f008;
+  color: #091d8f;
 }
 
 .quantity:before {
-  content: " (";
+  /* content: " ("; */
+  content: " = ";
 }
 
-.quantity:after {
+/* .quantity:after {
   content: ")";
+} */
+
+.edit-button {
+  width: 60px;
+  border: 0;
+  padding: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.fa-cart-arrow-down,
+.fa-pencil {
+  color: #091d8f;
+  font-size: 30px;
+  width: 8px;
 }
 
 .delete {
@@ -159,10 +221,10 @@ li:hover {
   padding: 10px;
   position: absolute;
   right: 0;
-  top: 0;
+  top: -3px;
   color: white;
   background-color: #f80909;
-  margin: 5px 8px; 
+  margin: 5px 8px 10px;
   width: auto;
   /* font-size: 1rem; */
 }
@@ -173,21 +235,64 @@ li:hover {
 
 #bought-list li {
   background-color: #f6f6f6;
+  caret-color: #091d8f;
+  caret-shape: underscore;
 }
 
 #bought-list li .quantity {
-  color: #17eb10;
+  color: #091d8f;
 }
 
 .list__label {
   border-bottom: 2px solid #09c0f8;
-  font-size: 1em;
-  color: #0e1e20;
+  font-size: 1.30em;
+  /* color: white; */
   padding: 0;
+  
+}
+
+@media screen and (max-width: 768px) {
+  #item-input {
+    width: 100%;
+  }
+
+  .span-edit {
+    position: absolute;
+    top: 45vh;
+    left: 60px;
+    color: rgb(251, 252, 249);
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  .div-for-form {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  main {
+    padding: 0 1rem;
+  }
+
+  .div-quantity {
+    width: 50%;
+  }
+
+  #item-input,
+  #quantity-input {
+    height: 35px;
+  }
+
+   .span-edit {
+    position: absolute;
+    top: 42vh;
+    left: 15px;
+  }
 }
 
 @media screen and (max-width: 320px) {
-  .header-presentation {
-    flex-direction: column;
+  main {
+    padding: 0 0.75rem;
   }
 }
