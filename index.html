@@ -32,17 +32,20 @@
         </div>
       </div>
       <div id="lists">
-        <p class="list__label">
-          Still need to grab <span class="quantity" id="shopping-num"></span
-          ><button class="edit-button"><i class="fa fa-pencil"></i></button
-          ><span class="span-edit">
-            click pencil before, then click Item name to edit. Next, if needed,
-            double click the Item to move it to cart</span
-          >
-        </p>
+        <div class="list__label" id="list-labelid">
+          Still need to grab
+          <span class="quantity" id="shopping-num"> </span>
+          <!-- <div class="btn-text"> -->
+            <button class="edit-button">
+              <i class="fa fa-pencil"></i>
+            </button>
+            <span class="span-edit"> Click on pencil to edit.
+            </span>
+          <!-- </div> -->
+        </div>
         <ul id="shopping-list"></ul>
         <p class="list__label">
-          In cart <i class="fa fa-cart-arrow-down"></i>
+          In the cart <i class="fa fa-cart-arrow-down"></i>
           <span class="quantity" id="bought-num"></span>
         </p>
         <ul id="bought-list"></ul>

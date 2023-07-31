@@ -6,7 +6,8 @@ const boughtList = document.querySelector("#bought-list");
 const shoppingNum = document.querySelector("#shopping-num");
 const boughtNum = document.querySelector("#bought-num");
 const editButton = document.querySelector(".edit-button");
-
+const text = document.querySelector(".span-edit");
+const label = document.querySelector("#list-labelid");
 shoppingNum.style.color = "white";
 boughtNum.style.color = "white";
 
@@ -17,6 +18,7 @@ shoppingList.addEventListener("click", removeItemFromShoppingList);
 boughtList.addEventListener("click", sendBackItemToShoppingList);
 boughtList.addEventListener("click", removeItemFromBoughtList);
 editButton.addEventListener("click", editContent);
+
 
 //* function : add task */
 function addItemToshoppingList(e) {
@@ -85,21 +87,23 @@ function sendItemToBoughtList() {
         if (
           // less than 800sec and 1440px
           new Date().getTime() - touchtime < 800 &&
-          document.documentElement.scrollWidth < 1440
+          document.documentElement.scrollWidth <= 800
         ) {
+        
           boughtList.appendChild(li);
           shoppingNum.textContent = shoppingList.children.length;
           boughtNum.textContent = boughtList.childElementCount;
           li.firstElementChild.contentEditable = false;
           touchtime = 0;
+          text.style.visibility = "visible";
         } else {
           touchtime = new Date().getTime();
+          // list__label.children[2].innerHTML = ``; 
         }
       }
     });
   });
 }
-
 //*function to sendback item to shopping list
 function sendBackItemToShoppingList(e) {
   e.preventDefault();
