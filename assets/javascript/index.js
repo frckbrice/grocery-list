@@ -6,19 +6,18 @@ const boughtList = document.querySelector("#bought-list");
 const shoppingNum = document.querySelector("#shopping-num");
 const boughtNum = document.querySelector("#bought-num");
 const editButton = document.querySelector(".edit-button");
-const text = document.querySelector(".span-edit");
+// const text = document.querySelector(".span-edit");
 const label = document.querySelector("#list-labelid");
 shoppingNum.style.color = "white";
 boughtNum.style.color = "white";
 
 //*  events
 submit.addEventListener("click", addItemToshoppingList);
-shoppingList.addEventListener("click", sendItemToBoughtList);
+// shoppingList.addEventListener("click", sendItemToBoughtList);
 shoppingList.addEventListener("click", removeItemFromShoppingList);
 boughtList.addEventListener("click", sendBackItemToShoppingList);
 boughtList.addEventListener("click", removeItemFromBoughtList);
-editButton.addEventListener("click", editContent);
-
+// editButton.addEventListener("click", editContent);
 
 //* function : add task */
 function addItemToshoppingList(e) {
@@ -31,7 +30,8 @@ function addItemToshoppingList(e) {
   const inputQuantity = parseInt(
     document.querySelector("#quantity-input").value.trim()
   );
-  if (inputText != "" && inputQuantity > 0) {
+  let exit = false;
+  if (inputText != "" && inputQuantity) {
     //create li item (task)
     const li = document.createElement("li");
     li.style.position = "relative";
@@ -40,12 +40,15 @@ function addItemToshoppingList(e) {
     span1.textContent = inputText;
     span1.style.padding = "10px";
 
-    //create delete button2
-    // const moveButton = document.createElement("button");
-    // moveButton.style.cursor = "pointer";
-    // moveButton.appendChild(document.createTextNode("move"));
-    // moveButton.className = "move";
-    // moveButton.addEventListener("click", moveItemToCart(e));
+    //create edit button1
+    const i = document.createElement("i");
+    i.classList.add("fa-pencil");
+
+    const editButton = document.createElement("button");
+    editButton.style.cursor = "pointer";
+    editButton.appendChild(document.createTextNode("✏️"));
+    editButton.className = "edit";
+    editButton.addEventListener("click", editContent);
 
     //create delete button1
     const deleteButton = document.createElement("button");
@@ -59,16 +62,33 @@ function addItemToshoppingList(e) {
 
     li.appendChild(span1);
     li.appendChild(span);
-    // li.appendChild(moveButton);
+    li.appendChild(editButton);
     li.appendChild(deleteButton);
 
     //add li to the end of list of tasks
-    shoppingList.appendChild(li);
+    // avoid duplicate
+    const arr = Array.from(shoppingList.children);
+    arr.forEach((li) => {
+      const sum = +li.children[1].textContent + +inputQuantity;
+      if (li.children[0].textContent === inputText) {
+        li.children[1].textContent = sum;
+        exit = true;
+      }
+    });
 
-    shoppingNum.textContent = shoppingList.children.length;
+    if (exit) {
+      document.querySelector("#item-input").value = "";
+      document.querySelector("#quantity-input").value = "";
+      return;
+    } else {
+      shoppingList.appendChild(li);
+      shoppingNum.textContent = shoppingList.children.length;
 
-    document.querySelector("#item-input").value = "";
-    document.querySelector("#quantity-input").value = "";
+      document.querySelector("#item-input").value = "";
+      document.querySelector("#quantity-input").value = "";
+    }
+
+    li.addEventListener("click", sendItemToBoughtList);
   } else {
     alert("No empty input allowed");
   }
@@ -87,18 +107,17 @@ function sendItemToBoughtList() {
         if (
           // less than 800sec and 1440px
           new Date().getTime() - touchtime < 800 &&
-          document.documentElement.scrollWidth <= 800
+          document.documentElement.scrollWidth <= 1536
         ) {
-        
           boughtList.appendChild(li);
           shoppingNum.textContent = shoppingList.children.length;
           boughtNum.textContent = boughtList.childElementCount;
           li.firstElementChild.contentEditable = false;
           touchtime = 0;
-          text.style.visibility = "visible";
+          // text.style.visibility = "visible";
         } else {
           touchtime = new Date().getTime();
-          // list__label.children[2].innerHTML = ``; 
+          // list__label.children[2].innerHTML = ``;
         }
       }
     });
@@ -141,23 +160,35 @@ function removeItemFromBoughtList(e) {
 }
 
 //* function to edit content
-function editContent() {
-  const listOfItem = document.querySelectorAll("li");
-  console.log(typeof listOfItem);
-  Array.from(listOfItem).forEach((li) => {
-    li.addEventListener("click", () => {
-      li.firstElementChild.contentEditable = true;
-    });
+function editContent(e) {
+  const liElements = document.getElementsByName("li");
+  console.log("originalText");
+  console.log(liElements);
+  Array.from(shoppingList.children).forEach((li) => {
+    if (li.contains(e.target)) {
+      const originalText = li.firstChild.innerHTML;
+      let input = document.createElement("input");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", originalText);
+      input.className = "inputcreated";
+      input.addEventListener("keypress", saveData);
+      input.addEventListener("click", saveData);
+      li.firstChild.replaceWith(input);
+      input.select();
+    }
+
+    console.log("in array ");
   });
+
+  console.log("out array ");
 }
 
-// function moveItemToCart(e) {
-//   e.preventDefault();
-//   const move = document.querySelector('.move');
-//   li = move.parentElement;
-//   console.log(li,move)
-//   boughtList.appendChild(li);
-//   shoppingNum.textContent = shoppingList.children.length;
-//   boughtNum.textContent = boughtList.childElementCount;
-//   li.firstElementChild.contentEditable = false;
-// }
+
+function saveData(e) {
+  let inputdata = e.target.value;
+  if ((e.target.value.length > 0 && (e.keyCode === 13) || e.type === "click")) {
+    let span = document.createElement("span");
+    span.textContent = e.target.value;
+    e.target.replaceWith(span);
+  }
+}
