@@ -115,7 +115,6 @@ function sendItemToBoughtList () {
           // text.style.visibility = "visible";
         } else {
           touchtime = new Date().getTime()
-          // list__label.children[2].innerHTML = ``;
         }
       }
     })
